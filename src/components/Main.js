@@ -8,32 +8,35 @@ class Main extends Component {
       <div className="container-fluid mt-5">
         <div className="row">
           <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '500px' }}>
-            <div className="content mr-auto ml-auto">
-              
-              <p>&nbsp;</p>
-              <h2>Upload Your Image</h2>
+            <div className="content mr-auto ml-auto my-4">
+              <div className="p-3 bg-secondary text-white d-flex flex-column justify-content-center" style={{'margin-top':"8rem"}}>
+               <p>&nbsp;</p>
+              <h2 className="justify-content-center ml-5">Upload Your Image</h2>
               <form onSubmit={(event) => {
                 event.preventDefault()
                 const description = this.imageDescription.value
                 this.props.uploadImage(description)
               }} >
-                <input type='file' accept=".jpg, .jpeg, .png, .bmp, .gif" onChange={this.props.captureFile} />
+                <input type='file' className="ml-5 mt-2 bg-dark" accept=".jpg, .jpeg, .png, .bmp, .gif" onChange={this.props.captureFile} />
+                
                   <div className="form-group mr-sm-2">
                     <br></br>
                       <input
                         id="imageDescription"
                         type="text"
                         ref={(input) => { this.imageDescription = input }}
-                        className="form-control"
+                        className="form-control ml-5 bg-dark text-danger"
                         placeholder="Enter your Caption "
+                        style={{ width: '350px' }}
                         required />
                   </div>
                 <button type="submit" className="btn btn-primary btn-block btn-lg">Upload!</button>
               </form>
+              </div>
               <p>&nbsp;</p>
               { this.props.images.map((image, key) => {
                 return(
-                  <div className="card mb-4 .bg-secondary.bg-gradient" key={key} >
+                  <div className="card mb-4 " key={key} >
                     <div className="card-header">
                       <img
                         className='mr-2'
@@ -44,10 +47,10 @@ class Main extends Component {
                       />
                       <small className="text-muted">{image.author}</small>
                     </div>
-                    <ul id="imageList" className="list-group list-group-flush .bg-secondary.bg-gradient">
-                      <li className="list-group-item ">
+                    <ul id="imageList" className="list-group list-group-flush bg-secondary bg-gradient">
+                      <li className="list-group-item bg-secondary bg-gradient text-indigo-500 ">
                         <p className="text-center"><img src={`https://ipfs.infura.io/ipfs/${image.hash}`} style={{ maxWidth: '420px'}}/></p>
-                        <p>{image.description}</p>
+                        <p className="text-indigo-500">{image.description}</p>
                       </li>
                       <li key={key} className="list-group-item py-2">
                         <small className="float-left mt-1 text-muted">
